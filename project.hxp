@@ -1,0 +1,50 @@
+import hxp.*;
+
+class Project extends Script {
+    public function new() {
+        super();
+
+        name = "SNPrism";
+        version = "0.1.0";
+
+        meta.title = "SNPrism";
+        meta.description = "Super Nintendo emulator written in Haxe";
+        meta.company = "ThePrismCrew";
+        meta.packageName = "com.theprismcrew.snprism";
+        meta.version = "0.1.0";
+        meta.buildNumber = "1";
+
+        sources.push("src");
+
+        haxelibs.push(new Haxelib("openfl", "9.5.2"));
+        haxelibs.push(new Haxelib("lime", "8.3.2"));
+
+        window.width = 512;
+        window.height = 448;
+        window.fps = 60;
+        window.title = "SNPrism";
+        window.resizable = true;
+
+        defines.set("snprism", "1");
+    }
+
+    override function populate():Void {
+        switch (target) {
+            case CPP:
+                defines.set("HXCPP_OPTIMIZE_FOR_SIZE", "0");
+                defines.set("cpp", "1");
+                haxeflags.push("-D HXCPP_DEBUG_LINK");
+
+            case HASHLINK:
+                defines.set("hl", "1");
+
+            case JAVASCRIPT:
+                defines.set("js", "1");
+                haxeflags.push("--js-es 6");
+
+            default:
+        }
+
+        super.populate();
+    }
+}
