@@ -1,2 +1,1 @@
-# PrismEngine
-Simple Engine :3
+# SNPrism
