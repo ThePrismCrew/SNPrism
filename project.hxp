@@ -14,7 +14,7 @@ class Project extends Script {
         meta.version = "0.1.0";
         meta.buildNumber = "1";
 
-        sources.push("src");
+        sources.push("source");
 
         haxelibs.push(new Haxelib("openfl", "9.5.2"));
         haxelibs.push(new Haxelib("lime", "8.3.2"));
